@@ -1,0 +1,25 @@
+{
+  "name": "cyia-ngx-log",
+  "version": "1.0.8",
+  "description": "angular6 调试模块",
+  "main": "module/lib/index.js",
+  "types": "module/lib/index.d.ts",
+  "scripts": {
+    "prepublishOnly": "tsc"
+  },
+  "files": [
+    "module/lib/**/*.js",
+    "module/lib/**/*.d.ts",
+    "README.md",
+    "src/pic/*"
+  ],
+  "keywords": [
+    "angular",
+    "log"
+  ],
+  "author": "cyia",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/core": ">=6.0.0"
+  }
+}
