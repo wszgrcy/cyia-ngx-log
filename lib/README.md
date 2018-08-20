@@ -35,8 +35,8 @@ import { LogModule } from "cyia-ngx-log";
 export class AppModule { }
 
 ```
-- ![代码](./src/pic/cyia-ngx-log1.png)
-- ![显示](./src/pic/cyia-ngx-log2.png)
+- ![代码](https://github.com/wszgrcy/cyia-ngx-log/blob/master/lib/src/pic/cyia-ngx-log1.png)
+- ![显示](https://github.com/wszgrcy/cyia-ngx-log/blob/master/lib/src/pic/cyia-ngx-log2.png)
 # 配置
 ``` ts
 export interface LogConfigure {
