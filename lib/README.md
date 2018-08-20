@@ -35,8 +35,8 @@ import { LogModule } from "cyia-ngx-log";
 export class AppModule { }
 
 ```
-- ![代码](https://github.com/wszgrcy/cyia-ngx-log/blob/master/lib/src/pic/cyia-ngx-log1.png)
-- ![显示](https://github.com/wszgrcy/cyia-ngx-log/blob/master/lib/src/pic/cyia-ngx-log2.png)
+- ![代码](https://raw.githubusercontent.com/wszgrcy/cyia-ngx-log/master/lib/src/pic/cyia-ngx-log1.png)
+- ![显示](https://raw.githubusercontent.com/wszgrcy/cyia-ngx-log/master/lib/src/pic/cyia-ngx-log2.png)
 # 配置
 ``` ts
 export interface LogConfigure {
@@ -46,3 +46,4 @@ export interface LogConfigure {
 
 # todo 
 - 对于调试的定位到行现在处理的有点low,但是好歹能定位.不知道能不能做到重写console指定,希望大牛赐教
+- 英文版...由于英文水平一般,就不献丑了,如果有大牛能帮忙翻译下,感激不仅
