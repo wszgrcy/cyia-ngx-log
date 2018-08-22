@@ -1,5 +1,5 @@
 import { LogStyle } from '../shared/log-style.define';
-import { LogConfigure } from '../shared/log.configure';
+import { LogConfigure, LabelTemplate } from '../shared/log.configure';
 export declare class LogService {
     /**保存要输出的  */
     private dataStr;
@@ -12,6 +12,7 @@ export declare class LogService {
         Array: boolean;
         Object: boolean;
     };
+    private label;
     static test1: any;
     timeHeap: TimeHeapItem[];
     constructor(logConfigure: LogConfigure);
@@ -21,6 +22,13 @@ export declare class LogService {
      * @memberof LogService
      */
     private setDataInit;
+    /**
+     *设置开始,计算,结束的输出格式
+     *
+     * @param {LabelTemplate} label {start,end,compute}
+     * @memberof LogService
+     */
+    setPrintLabel(label: LabelTemplate): void;
     /**
      *样式初始化
      *
@@ -78,7 +86,15 @@ export declare class LogService {
     private containFunction;
     private _searchObject;
     private _searchArray;
+    /**
+     * 样式名的大小写转换
+     * @private
+     * @param {string} name
+     * @returns {string}
+     * @memberof LogService
+     */
     private coverName;
+    private printOutLabelStr;
 }
 export interface TimeHeapItem {
     time: number;

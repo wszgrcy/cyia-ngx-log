@@ -8,6 +8,7 @@
     "sourceMap": true,
     "outDir": "./module/lib",
     "strict": false,
+    "noImplicitAny": false,
     "moduleResolution": "node",
     "typeRoots": [
       "node_modules/@types"

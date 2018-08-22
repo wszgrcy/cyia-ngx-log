@@ -1,6 +1,6 @@
 {
   "name": "cyia-ngx-log",
-  "version": "1.0.10",
+  "version": "1.1.0",
   "description": "angular6 调试模块",
   "main": "module/lib/index.js",
   "types": "module/lib/index.d.ts",
@@ -28,5 +28,8 @@
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": ">=6.0.0"
+  },
+  "dependencies": {
+    "cyia-ngx-common": "^1.0.2"
   }
 }

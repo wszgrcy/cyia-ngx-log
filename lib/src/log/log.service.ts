@@ -1,8 +1,8 @@
-import { TypeJudgment, jsNativeType } from './../shared/type-judgment';
+import { TypeJudgment, jsNativeType } from 'cyia-ngx-common';
 import { Injectable, Inject } from '@angular/core';
 import { CONTROLLER } from '../shared/token';
 import { LogStyle } from '../shared/log-style.define';
-import { LogConfigure } from '../shared/log.configure';
+import { LogConfigure, LabelTemplate } from '../shared/log.configure';
 
 @Injectable()
 export class LogService {
@@ -17,6 +17,12 @@ export class LogService {
         Array: false,
         Object: false,
     }
+    private label: LabelTemplate = {
+        start: `[{name}-{desc}]`,
+        end: `[{name}-{desc}] 结束,用时{time}秒`,
+        compute: `[{name}-{desc}] 运行至此用时{time}秒`,
+    }
+
     static test1: any;
     timeHeap: TimeHeapItem[] = []
     //log info warn error
@@ -37,6 +43,20 @@ export class LogService {
         this.dataArray = [this.outStyle]
     }
 
+
+    /**
+     *设置开始,计算,结束的输出格式
+     *
+     * @param {LabelTemplate} label {start,end,compute}
+     * @memberof LogService
+     */
+    setPrintLabel(label: LabelTemplate): void {
+        for (const x in label) {
+            if (label.hasOwnProperty(x) && label[x])
+                this.label[x] = label[x]
+        }
+
+    }
     /**
      *样式初始化
      *
@@ -70,8 +90,8 @@ export class LogService {
     start(component: any = null, desc: string = '') {
         try {
             let name = component['__proto__']['constructor']['name']
-            this.timeHeap.push({ time: Date.now(), thisname: name, this: component, desc: desc })
-            console.group(`${name}-${desc}`);
+            // console.group(`${name}-${desc}`);
+            console.group(this.printOutLabelStr(this.label.start, this.timeHeap[this.timeHeap.push({ time: Date.now(), thisname: name, this: component, desc: desc }) - 1]))
         } catch (error) {
             console.group(`${desc}`);
         }
@@ -81,7 +101,7 @@ export class LogService {
             return val.this === component
         });
         if (item) {
-            this.log(`[${item.thisname}-${item.desc || ''}] 运行至此用时${(Date.now() - item.time) / 1000}秒`)
+            this.log(this.printOutLabelStr(this.label.compute, item))
         } else {
             this.warn('该组件并没有调用start初始化')
         }
@@ -96,7 +116,7 @@ export class LogService {
         let i = this.timeHeap.length - 1;
         while (i >= 0) {
             if (this.timeHeap[i].this === component) {
-                this.log(`[${this.timeHeap[i].thisname}-${this.timeHeap[i].desc || ''}] 结束,用时${(Date.now() - this.timeHeap[i].time) / 1000}秒`);
+                this.log(this.printOutLabelStr(this.label.end, this.timeHeap[i]))
                 this.timeHeap.splice(i, 1)
                 break;
             }
@@ -236,6 +256,13 @@ export class LogService {
         return false;
     }
 
+    /**
+     * 样式名的大小写转换
+     * @private
+     * @param {string} name
+     * @returns {string}
+     * @memberof LogService
+     */
     private coverName(name: string): string {
         let wordArray = name.match(/([A-Z])/g);
         for (let i = 0; wordArray && i < wordArray.length; i++) {
@@ -245,6 +272,9 @@ export class LogService {
         return name;
     }
 
+    private printOutLabelStr(label: string, obj: TimeHeapItem): string {
+        return label.replace('{time}', `${(Date.now() - obj.time) / 1000}`).replace('{desc}', obj.desc || '').replace('{name}', obj.thisname)
+    }
 }
 // function controlOpen(bool: boolean) {
 //     console.log('查看传入', bool)
