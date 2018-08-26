@@ -23,7 +23,7 @@
     "core-js": "^2.5.4",
     "cyia-ngx-common": "^1.0.2",
     "cyia-ngx-log": "^1.0.2",
-    "rxjs": "^6.0.0",
+    "rxjs": "^6.2.2",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

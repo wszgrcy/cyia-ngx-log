@@ -166,14 +166,18 @@ export class LogService {
                         this.dataStr += '%o';
                         this.dataArray.push(val);
                     }
-                    break
-                default:
+                    break;
+                case jsNativeType.number, jsNativeType.string:
                     this.dataStr += val;
+                    break;
+                default:
+                    this.dataStr += '%o';
+                    this.dataArray.push(val);
                     break;
             }
             //1.最后一个参数正好是普通数据.2.正好输入完成,只有初始化
         })
-        if (this.dataArray.length >= 1 && this.dataStr.length > 2)
+        if (this.dataArray.length > 1 || this.dataStr.length > 2)
             this.logprint(1, null, method);
     }
 
@@ -186,15 +190,19 @@ export class LogService {
         // this.dataArray.push(this.getLine())
         switch (index) {
             case 1:
-                console[method](this.dataStr, ...this.dataArray);
+                if (this.dataArray.length > 1 || this.dataStr.length > 2) {
+                    console[method](this.dataStr, ...this.dataArray);
+                    console.log(this.getLine())
+                }
                 break;
             case 2:
                 console.table(table);
+                console.log(this.getLine())
                 break;
             default:
                 break;
         }
-        console.log(this.getLine())
+
     }
     private getLine() {
         let a = new Error();
