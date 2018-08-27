@@ -167,7 +167,8 @@ export class LogService {
                         this.dataArray.push(val);
                     }
                     break;
-                case jsNativeType.number, jsNativeType.string:
+                case jsNativeType.number:
+                case jsNativeType.string:
                     this.dataStr += val;
                     break;
                 default:

@@ -1,6 +1,6 @@
 {
   "name": "cyia-ngx-log",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "description": "angular6 调试模块",
   "main": "module/lib/index.js",
   "types": "module/lib/index.d.ts",

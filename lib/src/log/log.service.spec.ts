@@ -30,10 +30,16 @@ describe('测试', () => {
         console.log('-------')
 
     });
-    it('非对象输出', () => {
+    it('window输出', () => {
         service.flag.Object = true;
         console.log('测试', TypeJudgment.getType(window))
         service.log(window)
+        console.log('-------')
+
+    });
+    it('包含函数输出', () => {
+        service.flag.Object = true;
+        service.log({ a: 5, b: () => { } })
         console.log('-------')
 
     });
