@@ -1,0 +1,25 @@
+{
+  "name": "cyia-ngx-log",
+  "version": "1.1.7",
+  "description": "angular6 调试模块",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wszgrcy/cyia-ngx-log"
+  },
+
+  "keywords": [
+    "angular",
+    "log"
+  ],
+  "author": {
+    "name": "cyia",
+    "email": "wszgrcy@gmail.com"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+  },
+  "dependencies": {
+    "cyia-ngx-common": "^1.1.6"
+  }
+}

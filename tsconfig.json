@@ -21,6 +21,12 @@
     "paths": {
       "ngx-log": [
         "lib/src"
+      ],
+      "libs": [
+        "dist/libs"
+      ],
+      "libs/*": [
+        "dist/libs/*"
       ]
     }
   }
