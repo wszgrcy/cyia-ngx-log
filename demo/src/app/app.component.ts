@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LogService } from 'ngx-log';
+import { LogService } from 'cyia-ngx-log';
 // import { LogService } from 'lib/src/log/log.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { LogService } from 'ngx-log';
 export class AppComponent {
   constructor(private log: LogService) { }
   ngOnInit(): void {
-    this.log.setPrintLabel({start:`[组件{name}开始{desc}]`})
+    this.log.label = { start: `[组件{name}开始{desc}]` }
     let a = { b: 123 }
     this.log.flag.Array = true;
     this.log.flag.Object = true;

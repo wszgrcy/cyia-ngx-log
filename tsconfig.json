@@ -19,8 +19,9 @@
       "dom"
     ],
     "paths": {
-      "ngx-log": [
-        "lib/src"
+      "cyia-ngx-log": [
+        // "lib/src"
+        "dist/libs"
       ],
       "libs": [
         "dist/libs"

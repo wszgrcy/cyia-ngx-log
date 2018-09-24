@@ -271,21 +271,28 @@ export class LogService {
      * @memberof LogService
      */
     private getLine() {
-        let a = new Error();
-        let tmp = (a.stack as string).split('\n');
-        for (let i = tmp.length - 1; i < tmp.length; i--) {
-            const element = tmp[i].trim();
-            if (/LogService/.test(element)) {
-                tmp.splice(i + 2, 999);
-                tmp.splice(1, i);
-                break;
+        try {
+            let a = new Error();
+
+            let serviceName = (this as any)['__proto__']['constructor']['name']
+            let tmp = (a.stack as string).split('\n');
+            for (let i = tmp.length - 1; i < tmp.length; i--) {
+                const element = tmp[i].trim();
+                if (element.includes(serviceName)) {
+                    tmp.splice(i + 2, 999);
+                    tmp.splice(1, i);
+                    break;
+                }
             }
+            return tmp.join('\n');
+
+        } catch (error) {
+            return ''
         }
-        return tmp.join('\n');
     }
 
 
- 
+
     /**
      * @description 计算是否有函数,判断数组或对象是否包含函数,如果包含那么就仍然普通导出
      * @author cyia
