@@ -54,7 +54,7 @@ export interface LogConfigure {
 }
 ```
 # 更新日志
-## 1.1.8
+## 1.1.9
 - 修复生产模式下输出
 ## 1.1.7
 - 使用angular的library方式重新生成
