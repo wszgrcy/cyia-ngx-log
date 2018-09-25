@@ -249,16 +249,17 @@ export class LogService {
             case 1:
                 if (this.dataArray.length > 1 || this.dataStr.length > 2) {
                     console[method](this.dataStr, ...this.dataArray);
-                    console.log(this.getLine())
                 }
                 break;
             case 2:
                 console.table(table);
-                console.log(this.getLine())
+                // console.log(this.getLine())
                 break;
             default:
                 break;
         }
+        let line = this.getLine()
+        if (line) console.log(line)
 
     }
 
@@ -274,7 +275,8 @@ export class LogService {
         try {
             let a = new Error();
 
-            let serviceName = (this as any)['__proto__']['constructor']['name']
+            let serviceName: string = (this as any)['__proto__']['constructor']['name']
+            if (!serviceName.includes('LogService')) return ''
             let tmp = (a.stack as string).split('\n');
             for (let i = tmp.length - 1; i < tmp.length; i--) {
                 const element = tmp[i].trim();
@@ -285,7 +287,6 @@ export class LogService {
                 }
             }
             return tmp.join('\n');
-
         } catch (error) {
             return ''
         }
