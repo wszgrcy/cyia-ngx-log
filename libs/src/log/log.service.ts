@@ -59,15 +59,10 @@ export class LogService {
     }
 
 
-    /**
-     *设置开始,计算,结束的输出格式
-     *
-     * 
-     * 
-     */
+
 
     /**
-     * @description
+     * @description 设置开始,计算,结束的输出格式
      * @author cyia
      * @date 2018-09-06
      * @param label 传入模版
@@ -94,10 +89,10 @@ export class LogService {
             this.outStyle = str
         } else {
             this.outStyle = '';
-            for (const x in styleObj as LogStyle) {
-                if ((<LogStyle>styleObj).hasOwnProperty(x)) {
+            for (const x in styleObj) {
+                if ((styleObj).hasOwnProperty(x)) {
                     let propertyName = x
-                    const propertyValue = (<LogStyle>styleObj)[x] as string;
+                    const propertyValue = styleObj[x] as string;
                     propertyName = this.coverName(propertyName)
                     this.outStyle += `${propertyName}:${propertyValue};`;//doc正常情况
                 }

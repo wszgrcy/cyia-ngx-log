@@ -16,6 +16,26 @@
 # 属性
 - flag中的Array,Object当开启时会输出为表格(当含有数组或对象时不会输出为表格)
 
+# 装饰器
+- `@Debugger()` 对装饰方法内的`console.info/log/warn/error`进行重写
+## 参数
+```ts
+export interface DebuggerParam {
+    /**显示级别0b1111 */
+    level?: number;
+    /**输出样式 */
+    style?: LogStyle;
+    /**对象显示类型*/
+    objectType?: 'table' | 'normal';
+    /**数组显示类型*/
+    arrayType?: 'table' | 'normal';
+    /**函数显示类型*/
+    functionType?: 'string' | 'object';
+    /**暂时未添加功能 */
+    trace?: boolean;
+}
+```
+
 # 使用
 ``` ts 
 import { BrowserModule } from '@angular/platform-browser';
@@ -54,6 +74,9 @@ export interface LogConfigure {
 }
 ```
 # 更新日志
+## 1.2.0
+- 升级ng7编译
+- 增加装饰器`@Debugger`用于单方法的快速调试
 ## 1.1.9
 - 修复生产模式下输出
 ## 1.1.7
@@ -69,6 +92,7 @@ export interface LogConfigure {
 # todo 
 - 对于调试的定位到行现在处理的有点low,但是好歹能定位.不知道能不能做到重写console指定,希望大牛赐教
 - 英文版...由于英文水平一般,就不献丑了,如果有大牛能帮忙翻译下,感激不禁
-
+# 更多
+- 可以查看源码获得更多数据
 # 反馈
 - 邮箱wszgrcy@gmail.com,如果有问题,bug或建议请发送到这里来

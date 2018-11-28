@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { LogService } from 'cyia-ngx-log';
 // import { LogService } from 'lib/src/log/log.service';
-
+import { Debugger } from '../../../libs/src/log/log.decorator';
+const param: any = {
+  level: 0b1111, style: { color: 'red', fontSize: '20px' }, functionType: 'object', arrayType: 'table',
+  objectType: 'table'
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -28,10 +32,22 @@ export class AppComponent {
     this.log.warn('警告')
     this.log.info('提示')
     this.log.end(this)
+    console.log(
+      this.t1(122)
+
+    )
+    console.log('测试123')
   }
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
 
+  }
+  @Debugger(param)
+  t1(a) {
+    console.log('函数测试', a, { a: 23424 }, () => {
+      let a = 555
+    }, [12312, 'sdfsdf'], 9562, true)
+    return 896
   }
 }
