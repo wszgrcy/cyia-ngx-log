@@ -74,6 +74,8 @@ export interface LogConfigure {
 }
 ```
 # 更新日志
+## 1.2.1
+- 代码优化,升级ng7版本
 ## 1.2.0
 - 升级ng7编译
 - 增加装饰器`@Debugger`用于单方法的快速调试
