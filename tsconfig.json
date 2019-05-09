@@ -22,8 +22,8 @@
     ],
     "paths": {
       "cyia-ngx-log": [
-        // "libs/src" //调试用
-        "dist/libs" //构建后测试用
+        "libs/src" //调试用
+        // "dist/libs" //构建后测试用
       ],
 
     }

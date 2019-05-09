@@ -4,12 +4,7 @@ import { CONTROLLER } from '../shared/token';
 import { LogStyle } from '../shared/log-style.define';
 import { LogConfigure, LabelTemplate } from '../shared/log.configure';
 
-function testParam(bool: any) {
-    console.log('查看传入', bool)
-    return function (target: any, name: string, desc: PropertyDescriptor) {
 
-    }
-}
 type ConsoleMethod = 'log' | 'warn' | 'error' | 'info'
 export interface TimeHeapItem {
     time: number,
@@ -118,7 +113,7 @@ export class LogService {
      */
     start(component: any = null, desc: string = '') {
         try {
-            let name = component['__proto__']['constructor']['name']
+            let name = Object.getPrototypeOf(component).constructor.name
             console.group(this.printOutLabelStr(this.label.start, this.timeHeap[this.timeHeap.push({ time: Date.now(), thisname: name, this: component, desc: desc }) - 1]))
         } catch (error) {
             console.group(`${desc}`);
@@ -151,7 +146,6 @@ export class LogService {
      * @memberof LogService
      */
     end(component: any) {
-        console.groupEnd();
         let i = this.timeHeap.length - 1;
         while (i >= 0) {
             if (this.timeHeap[i].this === component) {
@@ -161,6 +155,7 @@ export class LogService {
             }
             i--;
         }
+        console.groupEnd();
     }
 
 
@@ -269,19 +264,19 @@ export class LogService {
     private getLine() {
         try {
             let a = new Error();
-
-            let serviceName: string = (this as any)['__proto__']['constructor']['name']
+            const serviceName: string = Object.getPrototypeOf(this).constructor.name;
             if (!serviceName.includes('LogService')) return ''
-            let tmp = (a.stack as string).split('\n');
-            for (let i = tmp.length - 1; i < tmp.length; i--) {
-                const element = tmp[i].trim();
+            let stackList = (a.stack as string).split('\n');
+            for (let i = stackList.length - 1; i < stackList.length; i--) {
+                const element = stackList[i].trim();
                 if (element.includes(serviceName)) {
-                    tmp.splice(i + 2, 999);
-                    tmp.splice(1, i);
+                    stackList.splice(i + 2);
+                    stackList.splice(1, i);
                     break;
                 }
             }
-            return tmp.join('\n');
+            stackList[1] = `at ${/\(.*\)/.exec(stackList[1])[0]}`;
+            return stackList.join('\n');
         } catch (error) {
             return ''
         }

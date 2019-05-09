@@ -18,7 +18,7 @@ export class AppComponent {
     let a = { b: 123 }
     this.log.flag.Array = true;
     this.log.flag.Object = true;
-    this.log.start(this, '测试')
+    this.log.start(this, '服务测试')
     this.log.setDataStyle(null, {
       color: 'red',
       background: 'black',
@@ -32,22 +32,16 @@ export class AppComponent {
     this.log.warn('警告')
     this.log.info('提示')
     this.log.end(this)
-    console.log(
-      this.t1(122)
-
-    )
-    console.log('测试123')
+    this.t1('传入参数')
   }
-  ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-
-  }
+  ngOnDestroy(): void { }
   @Debugger(param)
-  t1(a) {
-    console.log('函数测试', a, { a: 23424 }, () => {
+  async t1(a) {
+    console.log('装饰器调试')
+    console.log(a)
+    console.log('内容测试', a, { a: 23424 }, () => {
       let a = 555
-    }, [12312, 'sdfsdf'], 9562, true)
+    }, [123456, '字符串'], 654321, true)
     return 896
   }
 }
